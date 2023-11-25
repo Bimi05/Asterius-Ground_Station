@@ -8,6 +8,7 @@ This year, we have chosen to create a CanSat, which **splits into smaller counte
 
 ## What is this repository for?
 This repository contains the software **code** for our CanSat's base of operations. Team members can easily utilise this repository to view the software our base of operations is working with, while also being able to directly contribute to it.
+
 \- For the CanSat's software code, [browse here](https://github.com/Bimi05/Asterius-CanSat).
 
 ## Meet the Team
@@ -31,4 +32,5 @@ Below is a short analysis of what each role is responsible for.
 - **Telemetry**: ensuring it can receive collected data the CanSat is sending during the mission.
 - **Data Analysis**: analysing the data (i.e. plots) received by the CanSat during the mission.
 - **Promotion**: promoting our project and finding potential sponsors to fund the project.
+
 **__Please refer to [this](https://github.com/Bimi05/Asterius-CanSat) repository to view the responsibilities each role has regarding the CanSat.__**
