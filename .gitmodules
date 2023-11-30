@@ -1,0 +1,6 @@
+[submodule "lib/RadioHead"]
+	path = lib/RadioHead
+	url = https://github.com/adafruit/RadioHead
+[submodule "lib/SD"]
+	path = lib/SD
+	url = https://github.com/arduino-libraries/SD
