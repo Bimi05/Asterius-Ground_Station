@@ -1,8 +1,12 @@
 {
 	"folders": [
 		{
-			"name": "...-Ground_Station",
+			"name": "Asterius-Ground_Station",
 			"path": "."
+		},
+		{
+			"name": "Asterius-Ground_Station",
+			"path": "Asterius-Ground_Station"
 		}
 	],
 	"settings": {
