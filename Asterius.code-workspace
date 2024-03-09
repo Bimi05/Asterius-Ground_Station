@@ -4,14 +4,11 @@
 			"name": "Asterius-Ground_Station",
 			"path": "."
 		},
-		{
-			"name": "Asterius-Ground_Station",
-			"path": "Asterius-Ground_Station"
-		}
 	],
 	"settings": {
 		"files.autoSave": "afterDelay",
-		"files.autoSaveDelay": 100
+		"files.autoSaveDelay": 100,
+		"editor.tabSize": 2
 	},
 	"extensions": {
 		"recommendations": [
