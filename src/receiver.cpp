@@ -99,8 +99,8 @@ void Receiver::fill(uint32_t start, uint32_t end) {
     message = (char*) malloc((36+digits)*sizeof(char));
     snprintf(message, (36+digits)*sizeof(char), "Asterius:%li --- | --- --- --- --- ---", start);
     this->save(message);
+    free(message);
   }
-  free(message);
 }
 
 
@@ -116,7 +116,7 @@ void Receiver::decrypt(uint8_t offset, const char* data) {
     }
 
     if ((int(data[i]) < 65 || int(data[i]) > 90) || (int(data[i]) < 97 || int(data[i]) > 122)) {
-      continue; //* basically: do not decrypt symbols pls
+      continue; //* basically: only decrypt letters pls
     }
 
     uint8_t s = offset;
