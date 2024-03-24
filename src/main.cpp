@@ -9,9 +9,7 @@ Receiver rv = Receiver(FREQUENCY);
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial) {
-    delay(100);
-  }
+  while (!Serial);
 
   if (!(SD.begin(SD_SPI_ADDR) && rv.init())) {
     Serial.println("Could not initialise sensors, check wirings and addresses.");
@@ -21,8 +19,8 @@ void setup() {
 
 void loop() {
   if (rv.receive()) {
-    rv.log("Packet received. Fabulous.");
     rv.save(rv.message); //* this is modified by .receive(), so we're safe (probably) :)
+    rv.log("Packet received. Fabulous.");
   }
   else {
     rv.log("Packet missed. Not fabulous.");
