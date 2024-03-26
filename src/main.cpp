@@ -3,7 +3,7 @@
 #include "receiver.h"
 
 #define SD_SPI_ADDR 0
-#define FREQUENCY 0.0F
+#define FREQUENCY 434.2F
 
 Receiver rv = Receiver(FREQUENCY);
 
