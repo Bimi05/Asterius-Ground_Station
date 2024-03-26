@@ -5,22 +5,23 @@
 
 class Receiver {
   private:
-    float freq;
     File df; // our data file
+    float freq;
+    uint32_t lastKnownM_PID;
+    uint32_t lastKnownS_PID;
 
     // "Fills" in blank packets in a range of IDs.
-    void fill(uint32_t start, uint32_t end);
+    void fill(uint32_t start, uint32_t end, char unit);
 
     // Decrypt the incoming data
-    void decrypt(uint8_t offset, const char* data);
+    void process(uint8_t mode, char* data, uint8_t offset);
 
   public:
     char* message;
-    uint32_t lastKnownPID; // This helps in the checkMissed() function below :)
 
-    Receiver(float);
+    Receiver(float frequency);
 
-    // Initialise and configure the receiver (RH_RF95 module used)
+    // Initialise and configure the receiver (using the RH_RF95 module)
     bool init();
 
     // Check if we were able to receive a packet
