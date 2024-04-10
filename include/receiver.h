@@ -20,6 +20,7 @@ class Receiver {
     char* message;
 
     Receiver(float frequency);
+    ~Receiver();
 
     // Initialise and configure the receiver (using the RH_RF95 module)
     bool init();
