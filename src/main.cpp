@@ -5,7 +5,7 @@
 #define SD_SPI_ADDR 0
 #define FREQUENCY 434.2F
 
-Receiver rv = Receiver(FREQUENCY);
+Receiver rv(FREQUENCY);
 
 void setup() {
   Serial.begin(9600);
