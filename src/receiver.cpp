@@ -1,17 +1,17 @@
 #include "receiver.h"
 
-#define RFM_CS 0
-#define RFM_INT 0
-#define RFM_RESET 0
+#define RFM_CHIP_SELECT 4
+#define RFM_INTERRUPT 3
+#define RFM_RESET 2
 
 // ----------- Data ----------- //
 char* message = (char*) malloc(255*sizeof(char));
-RH_RF95 tm(RFM_CS, RFM_INT);
+RH_RF95 tm(RFM_CHIP_SELECT, RFM_INTERRUPT);
 // ---------------------------- //
 
 // ----- Helper Functions ----- //
 uint32_t getLatestPID(char unit) {
-  if (((unit != 'M') && (unit != 'S')) || message[strlen(message)-2] != unit) {
+  if (((unit != 'M') && (unit != 'S')) || (message[strlen(message)-2] != unit)) {
     return 0; //? really?
   }
 
@@ -51,18 +51,15 @@ bool Receiver::init() {
     return false;
   }
 
+  tm.setFrequency(freq);
+
   //* initialise data file
   if (SD.exists("ASTERIUS_GS_DATA.txt")) {
     SD.remove("ASTERIUS_GS_DATA.txt");
   }
 
   this->df = SD.open("ASTERIUS_GS_DATA.txt");
-  this->df.seek(0);
-
-  //* setting configutarion
-  tm.setFrequency(freq);
-
-  return true;
+  return this->df;
 }
 
 
@@ -117,10 +114,10 @@ void Receiver::fill(uint32_t start, uint32_t end, char unit) {
     //* in case anybody asks (I'm sure people will)
     //* 40 is the predetermined length of the string
     //* digits just helps me perfectly allocate the right amount so that I don't eat up the memory ;-;
-    char* pseudopacket = (char*) malloc((40+digits)*sizeof(char));
-    snprintf(pseudopacket, (40+digits)*sizeof(char), "Asterius:%li --- | --- --- --- --- --- [%c]", start, unit);
-    this->save(pseudopacket);
-    free(pseudopacket);
+    char* pseudo = (char*) malloc((40+digits)*sizeof(char));
+    snprintf(pseudo, (40+digits)*sizeof(char), "Asterius:%li --- | --- --- --- --- --- [%c]", start, unit);
+    this->save(pseudo);
+    free(pseudo);
   }
 }
 

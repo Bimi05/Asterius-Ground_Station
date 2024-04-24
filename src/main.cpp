@@ -2,7 +2,7 @@
 
 #include "receiver.h"
 
-#define SD_SPI_ADDR 0
+#define SD_SPI_ADDR 5
 #define FREQUENCY 434.2F
 
 Receiver rv(FREQUENCY);
@@ -21,8 +21,5 @@ void loop() {
   if (rv.receive()) {
     rv.save(rv.message); //* this is modified by .receive(), so we're safe (probably) :)
     rv.log("Packet received. Fabulous.");
-  }
-  else {
-    rv.log("Packet missed. Not fabulous.");
   }
 }
