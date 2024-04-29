@@ -1,4 +1,5 @@
 #include <Arduino.h>
+
 #include "receiver.h"
 
 #define SD_CHIP_SELECT 5
@@ -10,23 +11,24 @@ void setup() {
   Serial.begin(9600);
   while (!Serial);
 
-  SD.begin(SD_CHIP_SELECT);
-
-  const char* init = (rv.init()) ? "Ready!" : "Initialisation failed.";
-  Serial.println(init);
+  if (!SD.begin(SD_CHIP_SELECT) && rv.init()) {
+    Serial.println("Initialisation failed. Please check wirings and/or addresses.");
+    return;
+  }
+  Serial.println("Ready!");
 }
 
 void loop() {
   if (rv.receive()) {
-    rv.save(rv.message); //* this is modified by .receive(), so we're safe (probably) :)
     rv.log("Packet received. Fabulous.");
+    rv.save(rv.message);
     rv.log(rv.message);
   }
 
   while (Serial.available() != 0) {
     if (Serial.readString() == "detach") {
       char order[] = "Asterius:DETACH [G->M]";
-      rv.sendMessage(order);
+      rv.send(order);
     }
   }
 }

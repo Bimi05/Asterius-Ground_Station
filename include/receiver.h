@@ -15,7 +15,8 @@ class Receiver {
     // Fills in blank packets in a range of IDs
     void fill(uint32_t, uint32_t, char);
 
-    // Decrypt the incoming data
+    // Process (Encrypt/Decrypt) the incoming data
+    // Return a pointer to the processed string
     char* process(uint8_t, char*, uint8_t);
 
   public:
@@ -32,14 +33,14 @@ class Receiver {
     // Return true if a packet was received
     bool receive();
 
-    // Saves most recent stored message to the micro-SD card
+    // Saves the specified message to the micro-SD card
     void save(char*);
 
     // Log a message to the serial monitor
     void log(const char*);
 
     // Send a message to the Master CanSat
-    void sendMessage(char*);
+    void send(char*);
 };
 
 #endif
